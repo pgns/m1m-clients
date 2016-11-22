@@ -9,19 +9,23 @@
         </span>
         -->
         <span class="up" [class.active]="breadcrumb.length>0" (click)="browseParent()">
-            UP
+            <!--UP-->
+            <iron-icon icon="icons:reply"></iron-icon>
         </span>
         <span>{{getCurrentItemName()}}</span>
 
     </header>
     <section #rootSection style="position: relative;">
         <section #dataSection class="original">
-            <section *ngIf="!ms">
-                <!-- le bloc ci-dessous est affiché autant de fois qu'il y a de serveurs -->
-                <p *ngFor="let server of devices" (click)="browseMediaServer(server)" style="border:1px solid #DDD">
-                    • {{server.name }}
-                </p>
-            </section>
+            <paper-listbox>
+                <section *ngIf="!ms">
+                   <paper-item *ngFor="let server of devices" (click)="browseMediaServer(server)" style="border:1px">{{server.name }}</paper-item>
+                    <!-- le bloc ci-dessous est affiché autant de fois qu'il y a de serveurs -->
+                    <!--<p *ngFor="let server of devices" (click)="browseMediaServer(server)" style="border:1px solid #DDD">
+                        {{server.name }}
+                    </p>-->
+                </section>
+            </paper-listbox>
             <section *ngIf="ms && data" style="border:1px solid #DDD">
                 <!-- ce bloc affiche tous les dossiers à chaque niveau de l'arborescence -->
                 <p *ngFor="let dir of data.directories" (click)="browse(dir)" class="dir">

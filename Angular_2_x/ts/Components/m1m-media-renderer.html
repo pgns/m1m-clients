@@ -19,22 +19,40 @@
 
 <!-- nf est l'objet media lu par le renderer. pour connaître les informations accessibles, regardez le json tracé dans le renderer -->
 <p>• {{nf.name}}</p>
+    <paper-card heading="Card Title">
+        <div class="card-content">Some content</div>
+        <div class="card-actions">
+        <section class="media-controls">
+            <button *ngIf="!isPlaying()" (click)="play ();">play</button>
+            <button *ngIf=" isPlaying()" (click)="pause()">pause</button>
+            <button *ngIf="!isStopped()" (click)="stop ()">stop</button>
+        </section>
+            <paper-slider
+                min   = "0"
+                max   = "100"
+                [ngModel]       = "volume"
+                (ngModelChange) = "setVolume($event)"
+            >
+            </paper-slider>
+        </div>
+    </paper-card>
 
-    <section class="media-controls">
+
+  <!--  <section class="media-controls">
         <button *ngIf="!isPlaying()" (click)="play ();">play</button>
         <button *ngIf=" isPlaying()" (click)="pause()">pause</button>
         <button *ngIf="!isStopped()" (click)="stop ()">stop</button>
     </section>
 
     <section class="volume">
-      <!-- paper-slider est une extension permettant de créer un… slider. Il peut être stylé en CSS -->
-        <paper-slider
+      <! paper-slider est une extension permettant de créer un… slider. Il peut être stylé en CSS -->
+       <!-- <paper-slider
                 min   = "0"
                 max   = "100"
                 [ngModel]       = "volume"
                 (ngModelChange) = "setVolume($event)"
         ></paper-slider>
-    </section>
+    </section>-->
 
     <!-- Cette section comporte des infos complémentaires sur le media en cours de lecture. Il affiche la durée du média, l'image si elle est dispo, et le json complet des métadonnées du media -->
     <section *ngIf="currentMedia">

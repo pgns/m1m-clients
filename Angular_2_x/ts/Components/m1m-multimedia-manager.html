@@ -1,10 +1,18 @@
+<paper-toolbar>
+    <span class="title">Serveur up</span>
+</paper-toolbar>
 <m1m-media-browser [devices]="mediaServers">
     <!-- ici est chargé le template m1m-media-browser.html -->
 </m1m-media-browser>
 
-<hr />
 
-<h2>Media Renderers</h2>
+
+<hr />
+<paper-toolbar>
+    <span class="title">Media Renderer</span>
+</paper-toolbar>
+
+<!-- <h2>Media Renderers</h2> -->
 selected: {{getCurrentMediaRendererName()}}
 <m1m-media-renderer *ngFor="let renderer of mediaRenderers"
                     [nf]="renderer"
@@ -15,21 +23,23 @@ selected: {{getCurrentMediaRendererName()}}
 </m1m-media-renderer>
 
 
-<div id="carousel-example-generic"
+
+
+<!--<div id="carousel-example-generic"
      class="carousel slide"
      data-ride="carousel"
      (swipeleft) ="right.click()"
      (swiperight)=" left.click()"
     >
     <!-- Indicators -->
-    <ol class="carousel-indicators">
+    <!--<ol class="carousel-indicators">
         <li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
         <li data-target="#carousel-example-generic" data-slide-to="1"></li>
         <li data-target="#carousel-example-generic" data-slide-to="2"></li>
     </ol>
 
     <!-- Wrapper for slides -->
-    <div class="carousel-inner" role="listbox">
+    <!--<div class="carousel-inner" role="listbox">
         <div class="item active">
             <img src="https://cdn.pixabay.com/photo/2016/11/12/11/51/forest-1818690_1280.jpg" alt="...">
             <div class="carousel-caption">
@@ -50,8 +60,8 @@ selected: {{getCurrentMediaRendererName()}}
         </div>
     </div>
 
-    <!-- Controls -->
-    <a #left class="left carousel-control" href="#carousel-example-generic" role="button" data-slide="prev">
+    <!Controls -->
+    <!--<a #left class="left carousel-control" href="#carousel-example-generic" role="button" data-slide="prev">
         <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
         <span class="sr-only">Previous</span>
     </a>
@@ -59,4 +69,4 @@ selected: {{getCurrentMediaRendererName()}}
         <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
         <span class="sr-only">Next</span>
     </a>
-</div>
+</div>-->
