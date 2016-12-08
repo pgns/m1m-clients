@@ -43,7 +43,6 @@ section.original tr:active td {
     border-color: #ddd;
     border-width: 1px;
     border-style: solid;
- /*   float: left;*/
     -moz-box-shadow: 2px 2px 5px 0px #c0c0c0;
     -webkit-box-shadow: 2px 2px 5px 0px #c0c0c0;
     -o-box-shadow: 2px 2px 5px 0px #c0c0c0;
@@ -69,5 +68,35 @@ section.original tr:active td {
     display: flex;
     align-items: flex-start;
     justify-content: flex-start;
-    flex-wrap: wrap;    
+    flex-wrap: wrap;
+    padding-right: 5px;
+    padding-left: 5px;    
+}
+
+.titre{
+    text-align: center;
+}
+
+.button-back{
+    margin-left: 10px;
+    top: 25px;
+}
+
+.barre-broser-media{
+    padding: 5px;
+    margin-bottom: -15px;
+    border-color: #ddd;
+    border-width: 1px;
+    border-style: solid;
+    -moz-box-shadow: 2px 2px 5px 0px #c0c0c0;
+    -webkit-box-shadow: 2px 2px 5px 0px #c0c0c0;
+    -o-box-shadow: 2px 2px 5px 0px #c0c0c0;
+    box-shadow: 2px 2px 5px 0px #c0c0c0;
+    filter:progid:DXImageTransform.Microsoft.Shadow(color=#c0c0c0, Direction=134, Strength=5);
+    border-bottom-right-radius: 5px;
+    border-bottom-left-radius: 5px;
+}
+
+.margin-top-20{
+    margin-top: 20px;
 }

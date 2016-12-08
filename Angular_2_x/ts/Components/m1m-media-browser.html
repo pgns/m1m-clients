@@ -1,36 +1,29 @@
 <section >
     <header>
-        <div class="columns">
-  <div class="column">
-    <p class="notification is-info">
-        <span (click)="browseMediaServer(null)">Servers</span>
-     <!--   <span *ngIf="ms" (click)="browseMediaServer(ms)">{{ms.name}}</span> -->
+        <div class="barre-broser-media">
+            <p>
+                <span (click)="browseMediaServer(null)">Serveurs</span>
+             <!--   <span *ngIf="ms" (click)="browseMediaServer(ms)">{{ms.name}}</span> -->
+                <span *ngFor="let dir of breadcrumb"> <i class="fa fa-chevron-right" aria-hidden="true"></i> 
+                   <span (click)="browse(dir)"><i class="fa fa-folder-open" aria-hidden="true"></i> 
+                   {{dir.name}}</span> 
+                </span>
+                <br/>
 
-
-        <span *ngFor="let dir of breadcrumb"> <i class="fa fa-chevron-right" aria-hidden="true"></i> 
-           <a (click)="browse(dir)" class="button is-primary"><i class="fa fa-folder-open" aria-hidden="true"></i> 
-           {{dir.name}}</a> 
-        </span>
-        <br/>
-
-    </p>
-  </div>
-  </div>
-        <a class="button is-primary"  (click)="browseParent()"  *ngIf="breadcrumb && ms ">
+            </p>
+        </div>
+        <a class="button button-back"  (click)="browseParent()"  *ngIf="breadcrumb && ms">
           <span class="icon">
-            <i class="fa fa-arrow-left"></i>
+            <i class="fa fa-reply"></i>
           </span>
           <span>{{getCurrentParentName()}}</span>
         </a>
- <!--       <span class="up" [class.active]="breadcrumb.length>0" (click)="browseParent()">
+       <!-- <span class="up" [class.active]="breadcrumb.length>0" (click)="browseParent()">
             <!--UP
             <iron-icon icon="icons:reply"></iron-icon>
         </span>-->
-        <br/>
-
-
-    <!--     <span>{{getCurrentItemName()}}</span> -->
-
+        <h1 class="title titre" *ngIf="ms && ms">{{getCurrentItemName()}}</h1>
+        <h1 class="title titre margin-top-20" *ngIf="!ms">Serveurs</h1>
     </header>
     <section #rootSection style="position: relative;">
         <section #dataSection class="original">
