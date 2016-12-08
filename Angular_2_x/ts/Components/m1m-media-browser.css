@@ -6,10 +6,6 @@ section header span.up.active {
     color: black;
 }
 
-
-
-
-
 @keyframes slide-dir{
     from{margin-left:100px}
     to  {margin-left:  0px}
@@ -37,4 +33,41 @@ section.original {
 section.original tr:active td {
     background-color: lightgreen;
     padding: 8px 0px;
+}
+
+
+.data-directories{
+    padding: 5px;
+    margin : 5px;
+    max-width: 140px;
+    border-color: #ddd;
+    border-width: 1px;
+    border-style: solid;
+ /*   float: left;*/
+    -moz-box-shadow: 2px 2px 5px 0px #c0c0c0;
+    -webkit-box-shadow: 2px 2px 5px 0px #c0c0c0;
+    -o-box-shadow: 2px 2px 5px 0px #c0c0c0;
+    box-shadow: 2px 2px 5px 0px #c0c0c0;
+    filter:progid:DXImageTransform.Microsoft.Shadow(color=#c0c0c0, Direction=134, Strength=5);
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
+    border-radius: 5px;
+    height: 185px;
+}
+
+.titre-directories{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.centrer {
+    text-align: center;
+}
+
+.flex-media-broser{
+    display: flex;
+    align-items: flex-start;
+    justify-content: flex-start;
+    flex-wrap: wrap;    
 }

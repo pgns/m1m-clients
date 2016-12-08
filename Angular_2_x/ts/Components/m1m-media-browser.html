@@ -1,36 +1,59 @@
 <section >
     <header>
-        <!--
+        <div class="columns">
+  <div class="column">
+    <p class="notification is-info">
         <span (click)="browseMediaServer(null)">Servers</span>
-        <span *ngIf="ms" (click)="browseMediaServer(ms)">→ {{ms.name}}</span>
-        <span *ngFor="let dir of breadcrumb"
-           (click)="browse(dir)">
-           → {{dir.name}}
+     <!--   <span *ngIf="ms" (click)="browseMediaServer(ms)">{{ms.name}}</span> -->
+
+
+        <span *ngFor="let dir of breadcrumb"> <i class="fa fa-chevron-right" aria-hidden="true"></i> 
+           <a (click)="browse(dir)" class="button is-primary"><i class="fa fa-folder-open" aria-hidden="true"></i> 
+           {{dir.name}}</a> 
         </span>
-        -->
-        <span class="up" [class.active]="breadcrumb.length>0" (click)="browseParent()">
-            <!--UP-->
+        <br/>
+
+    </p>
+  </div>
+  </div>
+        <a class="button is-primary"  (click)="browseParent()"  *ngIf="breadcrumb && ms ">
+          <span class="icon">
+            <i class="fa fa-arrow-left"></i>
+          </span>
+          <span>{{getCurrentParentName()}}</span>
+        </a>
+ <!--       <span class="up" [class.active]="breadcrumb.length>0" (click)="browseParent()">
+            <!--UP
             <iron-icon icon="icons:reply"></iron-icon>
-        </span>
-        <span>{{getCurrentItemName()}}</span>
+        </span>-->
+        <br/>
+
+
+    <!--     <span>{{getCurrentItemName()}}</span> -->
 
     </header>
     <section #rootSection style="position: relative;">
         <section #dataSection class="original">
-            <paper-listbox>
-                <section *ngIf="!ms">
-                   <paper-item *ngFor="let server of devices" (click)="browseMediaServer(server)" style="border:1px">{{server.name }}</paper-item>
-                    <!-- le bloc ci-dessous est affiché autant de fois qu'il y a de serveurs -->
-                    <!--<p *ngFor="let server of devices" (click)="browseMediaServer(server)" style="border:1px solid #DDD">
-                        {{server.name }}
-                    </p>-->
-                </section>
-            </paper-listbox>
-            <section *ngIf="ms && data" style="border:1px solid #DDD">
+            <section *ngIf="!ms" class="flex-media-broser">
+                <div *ngFor="let server of devices" (click)="browseMediaServer(server)" class="data-directories">
+                    <figure class="image is-128x128">
+                        <img src="http://iconizer.net/files/Database/orig/Database_1.png" alt="">
+                    </figure>
+                    <div class="titre-directories">
+                        <p class="title is-5 centrer">{{server.name}}</p>
+                    </div>   
+                </div>    
+            </section>
+            <section *ngIf="ms && data" class="flex-media-broser">
                 <!-- ce bloc affiche tous les dossiers à chaque niveau de l'arborescence -->
-                <p *ngFor="let dir of data.directories" (click)="browse(dir)" class="dir">
-                    {{dir.name}}
-                </p>
+                <div *ngFor="let dir of data.directories" (click)="browse(dir)" class="data-directories">
+                        <figure class="image is-128x128">
+                          <img src="http://www.icone-png.com/png/54/54131.png" alt="">
+                        </figure>
+                        <div class="titre-directories">
+                            <p class="title is-5 centrer">{{dir.name}}</p>
+                        </div>        
+                </div>
                 <!-- Si il y a des médias l'application affiche ce tableau -->
                 <table cellpadding="0" cellspacing="0" width="100%" class="medias">
                     <tr style="cursor:move" *ngFor="let media of data.medias" [alx-draggable]="media">

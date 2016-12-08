@@ -5,7 +5,8 @@ type BreadcrumbItem = MediaServer | Directory;
 @Component({
     selector		: "m1m-media-browser",
     templateUrl		: "ts/Components/m1m-media-browser.html",
-    styleUrls       : [ "ts/Components/m1m-media-browser.css"
+    styleUrls       : [ "ts/Components/m1m-media-browser.css",
+                        "css/bulma.css"
                       ]
 })
 export class M1mMediaBrowser {
@@ -40,6 +41,15 @@ export class M1mMediaBrowser {
             this.ms = null;
         }
     }
+    getCurrentParentName() : string {
+        let res : string;
+        if (this.breadcrumb.length > 1) {
+            res = this.breadcrumb[ this.breadcrumb.length - 2].name;
+        } else {
+            res = "Liste des serveurs";
+        }
+        return res;
+    }
     getCurrentItemName() : string {
         let res : string;
         if(this.breadcrumb.length) {
@@ -48,7 +58,11 @@ export class M1mMediaBrowser {
         return res;
     }
     browseMediaServer(ms: MediaServer) {
-        this.breadcrumb = [ ms ];
+        if (ms === null) {
+            this.breadcrumb = null;
+        } else {
+            this.breadcrumb = [ ms ];
+        }
         this.ms         = ms;
         this.data       = null;
         if(ms) {
