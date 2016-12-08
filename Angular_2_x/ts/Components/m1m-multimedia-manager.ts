@@ -4,7 +4,7 @@ import {CommService, DataDlnaDevices, MediaServer, MediaRenderer} from "../Servi
 @Component({
     selector		: "comp-multimedia-manager",
     templateUrl		: "ts/Components/m1m-multimedia-manager.html",
-    styleUrls       : [ "ts/Components/m1m-multimedia-manager.css" ]
+    styleUrls       : [ "ts/Components/m1m-multimedia-manager.css", "css/bulma.css"]
 })
 export class CompMultimediaManager {
     @Input() title	: string;
@@ -28,5 +28,9 @@ export class CompMultimediaManager {
     }
     selectMediaRenderer(mr: MediaRenderer) {
         this.currentRenderer = mr;
+    }
+
+    clicked() {
+        alert("clicked");
     }
 }
