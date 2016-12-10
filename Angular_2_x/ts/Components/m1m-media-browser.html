@@ -46,18 +46,88 @@
                         <div class="titre-directories">
                             <p class="title is-5 centrer">{{dir.name}}</p>
                         </div>        
-                </div>
-                <!-- Si il y a des médias l'application affiche ce tableau -->
+                </div> 
+                <!-- Si il y a des médias l'application affiche ce tableau 
                 <table cellpadding="0" cellspacing="0" width="100%" class="medias">
                     <tr style="cursor:move" *ngFor="let media of data.medias" [alx-draggable]="media">
                         <td class="media-title">
-                            {{ media.title }} — {{ media.creator }}
+                       
+                            {{ media.title }} — {{ media.creator }} 
                         </td>
                         <td class="media-duration">
                             {{media.duration}}
                         </td>
                     </tr>
-                </table>
+                </table> 
+
+                <div *ngFor="let media of data.medias" [alx-draggable]="media" class="data-directories">
+                    <figure class="image is-128x128">
+                          <img src="http://www.icone-png.com/png/54/54131.png" alt="">
+                        </figure>
+                        <div class="titre-directories">
+                            <p class="title is-5 centrer">{{media.title}} —  {{ getMediaDuration(media) }} </p>
+                        </div>        
+
+                </div> -->
+                <div *ngFor="let media2 of data.medias" [alx-draggable]="media2" class="browser-media">
+                    <figure class="image is-64x64">
+                        <img src="http://placehold.it/128x128" alt="Image">
+                    </figure>
+                    <div class="inside-media"> 
+                        <p> 
+                            <strong>
+                                <span *ngIf="media2.title.length > 36" class="defileParent"> 
+                                    <span class="defile" > {{media2.title}} </span> 
+                                </span> 
+                                <span *ngIf="media2.title.length <= 36">
+                                    {{media2.title}}
+                                </span> 
+                            </strong>
+                            <br/>
+                            {{ media2.creator }}
+                            <br/>  
+                            <small>{{ getMediaDuration(media2) }}</small>
+                        </p>   
+                    </div> 
+                </div>                
+
+                <div *ngFor="let media2 of data.medias" [alx-draggable]="media2" class="browser-media">
+                <div class="box">
+                  <article class="media">
+                    <div class="media-left">
+                      <figure class="image is-64x64">
+                        <img src="http://placehold.it/128x128" alt="Image">
+                      </figure>
+                    </div>
+                    <div class="media-content">
+                      <div class="content">
+                        <p>
+
+
+                            <span *ngIf="media2.title.length > 36" class="defileParent"> <strong>
+                            <span class="defile" 
+                              > 
+                            {{media2.title}}
+                            </span> </strong>
+                            </span> 
+                            <span *ngIf="media2.title.length <= 36"> <strong>
+                           
+                            {{media2.title}}
+                            </strong>
+                            </span> 
+
+                            {{ media2.creator }}
+                          <br/>  
+                            <small>{{ getMediaDuration(media2) }}</small>
+                        </p>
+                      </div>
+                    </div>
+                  </article>
+                </div>
+
+                </div> 
+
+
             </section>
         </section>
     </section>

@@ -31,6 +31,13 @@ export class M1mMediaBrowser {
             this.data = null;
         }
     }
+    mediaConsole() {
+        console.log(this.data);
+    }
+    gettext() : string {
+    	return "data-text = \"aaaa\"";
+    }
+
     browseParent() {
         this.breadcrumb.pop();
         if(this.breadcrumb.length) {
@@ -39,6 +46,13 @@ export class M1mMediaBrowser {
             this.breadcrumb = [];
             this.data = null;
             this.ms = null;
+        }
+    }
+    getMediaDuration( media ) : string {
+        if (media.duration.slice(0,1) !== "0" ) {
+        	return media.duration.slice(0,7);
+        } else {
+        	return media.duration.slice(2,7);
         }
     }
     getCurrentParentName() : string {

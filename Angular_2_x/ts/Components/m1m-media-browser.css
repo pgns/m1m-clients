@@ -100,3 +100,80 @@ section.original tr:active td {
 .margin-top-20{
     margin-top: 20px;
 }
+
+.browser-media{
+    width: 300px;
+    padding: 5px;
+    margin : 5px;
+    border-color: #ddd;
+    border-width: 1px;
+    border-style: solid;
+    -moz-box-shadow: 2px 2px 5px 0px #c0c0c0;
+    -webkit-box-shadow: 2px 2px 5px 0px #c0c0c0;
+    -o-box-shadow: 2px 2px 5px 0px #c0c0c0;
+    box-shadow: 2px 2px 5px 0px #c0c0c0;
+    filter:progid:DXImageTransform.Microsoft.Shadow(color=#c0c0c0, Direction=134, Strength=5);
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
+    border-radius: 5px;
+    height: 78px;
+}
+
+
+/* Texte défilant */
+
+.defileParent {
+    display: block;
+    margin: 0 auto;
+    overflow: hidden;
+    position: relative;
+    table-layout: fixed;
+    width: 217px;
+}
+.defile {
+    display:block;
+    -webkit-animation:linear marqueelike 20s infinite ;
+    -moz-animation:linear marqueelike 20s infinite ;
+    -o-animation:linear marqueelike 20s infinite ;
+    -ms-animation:linear marqueelike 20s infinite ;
+    animation:linear marqueelike 20s infinite ;
+    margin-left:-100%;
+    padding:0 5px;
+    text-align:left;
+    height:25px;
+}
+
+/*
+.defile:after {
+    content:attr(data-text);
+    position:absolute;
+    white-space:nowrap;
+    padding-left:10px;
+}*/
+
+@-webkit-keyframes marqueelike {
+    0%, 100% {margin-left:0;}
+    99.99% {margin-left:-100%;}
+ }
+@-moz-keyframes marqueelike {
+    0%, 100% {margin-left:0;}
+    99.99% {margin-left:-100%;}
+ }
+@-o-keyframes marqueelike {
+    0%, 100% {margin-left:0;}
+    99.99% {margin-left:-100%;}
+ }
+@-ms-keyframes marqueelike {
+    0%, 100% {margin-left:0;}
+    99.99% {margin-left:-100%;}
+ }
+@keyframes marqueelike {
+    0%, 100% {margin-left:0;}
+    99.99% {margin-left:-100%;}
+ }
+
+.inside-media{
+    margin-top: -64px;
+    margin-left: 69px;
+}
+
