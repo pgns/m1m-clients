@@ -41,7 +41,7 @@
                 <!-- ce bloc affiche tous les dossiers à chaque niveau de l'arborescence -->
                 <div *ngFor="let dir of data.directories" (click)="browse(dir)" class="data-directories">
                         <figure class="image is-128x128">
-                          <img src="http://www.icone-png.com/png/54/54131.png" alt="">
+                          <img [src]=" getDirImage(dir)" alt="" class="responsive-image">
                         </figure>
                         <div class="titre-directories">
                             <p class="title is-5 centrer">{{dir.name}}</p>
@@ -69,34 +69,110 @@
                         </div>        
 
                 </div> -->
-                <div *ngFor="let media2 of data.medias" [alx-draggable]="media2" class="browser-media">
-                    <figure class="image is-64x64">
-                        <img src="http://placehold.it/128x128" alt="Image">
-                    </figure>
-                    <div class="inside-media"> 
-                        <p> 
-                            <strong>
-                                <span *ngIf="media2.title.length > 36" class="defileParent"> 
-                                    <span class="defile" > {{media2.title}} </span> 
-                                </span> 
-                                <span *ngIf="media2.title.length <= 36">
-                                    {{media2.title}}
-                                </span> 
-                            </strong>
-                            <br/>
-                            {{ media2.creator }}
-                            <br/>  
-                            <small>{{ getMediaDuration(media2) }}</small>
-                        </p>   
-                    </div> 
-                </div>                
+                <div *ngFor="let media2 of data.medias" [alx-draggable]="media2">
+                    <div class="browser-media-music" *ngIf="media2.classe.indexOf( isAudio ) > -1">
+                        <figure class="image is-64x64">
+                            <img src="{{getMediaImage(media2)}}" alt="Image">
+                        </figure>
+                        <div class="inside-media"> 
+                            <div class="media-title">
+                                <strong>
+                                    <span *ngIf="media2.title.length > 28" class="defileParent"> 
+                                        <span class="defile" > {{media2.title}} </span> 
+                                    </span> 
+                                    <span *ngIf="media2.title.length <= 28">
+                                        {{media2.title}}
+                                    </span> 
+                                </strong>
+                            </div>
+                            <div class="media-creator">    
+                                <span *ngIf="media2.creator.length > 28" class="defileParent"> 
+                                    <span class="defile" > {{media2.creator}} </span> 
+                                </span>
+                                <span *ngIf="media2.creator.length <= 28">
+                                    {{media2.creator}}
+                                </span>  
+                            </div>
+                            <div class="media-duartion">    
+                                <small>{{ getMediaDuration(media2) }}</small>
+                            </div>  
+                        </div> 
+                    </div>
 
+                    <div class="browser-media-movie" *ngIf="media2.classe.indexOf( isVideo ) > -1">
+                        <figure class="image is-64x64">
+                            <img src="{{getMediaImage(media2)}}" alt="Image">
+                        </figure>
+                        <div class="inside-media"> 
+                            <div class="media-title">
+                                <strong>
+                                    <span *ngIf="media2.title.length > 28" class="defileParent"> 
+                                        <span class="defile" > {{media2.title}} </span> 
+                                    </span> 
+                                    <span *ngIf="media2.title.length <= 28">
+                                        {{media2.title}}
+                                    </span> 
+                                </strong>
+                            </div>
+                            <div class="media-creator">    
+                                <span *ngIf="media2.creator.length > 28" class="defileParent"> 
+                                    <span class="defile" > {{media2.creator}} </span> 
+                                </span>
+                                <span *ngIf="media2.creator.length <= 28">
+                                    {{media2.creator}}
+                                </span>  
+                            </div>
+                            <div class="media-date">    
+                                <small>{{ media2.date }}</small>
+                            </div> 
+                            <div class="media-duartion">    
+                                <small>{{ getMediaDuration(media2) }}</small>
+                            </div>  
+                        </div> 
+                    </div>
+
+                    <div class="browser-media-movie" *ngIf="media2.classe.indexOf( isVideo ) === -1 && media2.classe.indexOf( isAudio )  === -1 ">
+                        <figure class="image is-64x64">
+                            <img src="{{getMediaImage(media2)}}" alt="Image">
+                        </figure>
+                        <div class="inside-media"> 
+                            <div class="media-title">
+                                <strong>
+                                    <span *ngIf="media2.title.length > 28" class="defileParent"> 
+                                        <span class="defile" > {{media2.title}} </span> 
+                                    </span> 
+                                    <span *ngIf="media2.title.length <= 28">
+                                        {{media2.title}}
+                                    </span> 
+                                </strong>
+                            </div>
+                            <div class="media-creator">    
+                                <span *ngIf="media2.creator.length > 28" class="defileParent"> 
+                                    <span class="defile" > {{media2.creator}} </span> 
+                                </span>
+                                <span *ngIf="media2.creator.length <= 28">
+                                    {{media2.creator}}
+                                </span>  
+                            </div>
+                            <div class="media-date">    
+                                <small>{{ media2.date }}</small>
+                            </div> 
+                            <div class="media-duartion">    
+                                <small>{{ getMediaDuration(media2) }}</small>
+                            </div>  
+                        </div> 
+                    </div>
+
+
+
+                </div>               
+                <!--
                 <div *ngFor="let media2 of data.medias" [alx-draggable]="media2" class="browser-media">
                 <div class="box">
                   <article class="media">
                     <div class="media-left">
                       <figure class="image is-64x64">
-                        <img src="http://placehold.it/128x128" alt="Image">
+                        <img src="{{getMediaImage(media2)}}" alt="Image">
                       </figure>
                     </div>
                     <div class="media-content">
@@ -123,9 +199,9 @@
                       </div>
                     </div>
                   </article>
-                </div>
-
                 </div> 
+
+                </div> -->
 
 
             </section>

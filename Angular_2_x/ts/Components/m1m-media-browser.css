@@ -35,6 +35,10 @@ section.original tr:active td {
     padding: 8px 0px;
 }
 
+.responsive-image{
+    height: 100% !important;
+    width:auto !important;
+}
 
 .data-directories{
     padding: 5px;
@@ -75,6 +79,7 @@ section.original tr:active td {
 
 .titre{
     text-align: center;
+    margin-bottom: 3px;
 }
 
 .button-back{
@@ -101,7 +106,7 @@ section.original tr:active td {
     margin-top: 20px;
 }
 
-.browser-media{
+.browser-media-music{
     width: 300px;
     padding: 5px;
     margin : 5px;
@@ -119,6 +124,23 @@ section.original tr:active td {
     height: 78px;
 }
 
+.browser-media-movie{
+    width: 300px;
+    padding: 5px;
+    margin : 5px;
+    border-color: #ddd;
+    border-width: 1px;
+    border-style: solid;
+    -moz-box-shadow: 2px 2px 5px 0px #c0c0c0;
+    -webkit-box-shadow: 2px 2px 5px 0px #c0c0c0;
+    -o-box-shadow: 2px 2px 5px 0px #c0c0c0;
+    box-shadow: 2px 2px 5px 0px #c0c0c0;
+    filter:progid:DXImageTransform.Microsoft.Shadow(color=#c0c0c0, Direction=134, Strength=5);
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
+    border-radius: 5px;
+    height: 108px;
+}
 
 /* Texte défilant */
 
@@ -140,7 +162,7 @@ section.original tr:active td {
     margin-left:-100%;
     padding:0 5px;
     text-align:left;
-    height:25px;
+    height:24px;
 }
 
 /*
@@ -177,3 +199,12 @@ section.original tr:active td {
     margin-left: 69px;
 }
 
+.titre-directories p {
+   overflow: hidden;
+   text-overflow: ellipsis;
+   display: -webkit-box;
+   -webkit-box-orient: vertical;
+   -webkit-line-clamp: 2; /* number of lines to show */
+   line-height: 1.2;        /* fallback */
+   max-height: 2.4;       /* fallback */
+}

@@ -1,4 +1,5 @@
 import {Component, Input, ElementRef, ViewChild} from "@angular/core";
+import {DomSanitizer} from "@angular/platform-browser";
 import {CommService, Directory, MediaServer, DataBrowse} from "../Services/CommService";
 
 type BreadcrumbItem = MediaServer | Directory;
@@ -17,7 +18,9 @@ export class M1mMediaBrowser {
     private breadcrumb  : BreadcrumbItem  [] = [];
     private data        : DataBrowse;
     private ms          : MediaServer;
-    constructor(private cs: CommService) {
+    private isAudio     : string = "audioItem";
+    private isVideo     : string = "videoItem";
+    constructor(private cs: CommService, private sanitizer : DomSanitizer) {
         // console.log( "el:", el);
     }
     browse(item?: BreadcrumbItem) {
@@ -36,6 +39,28 @@ export class M1mMediaBrowser {
     }
     gettext() : string {
     	return "data-text = \"aaaa\"";
+    }
+    getMediaImage( media ) {
+    	if (media.albumarturi) {
+    		return media.albumarturi;
+    	}
+    	if ( media.classe.indexOf( "audioItem" ) > -1 ) {
+    		return "img/music.svg";
+    	}
+    	if ( media.classe.indexOf( "video" ) > -1 ) {
+    		return "img/video.svg";
+    	}
+    	return "";
+    }
+    getDirImage( dir ) {
+    	if (dir.iconURL) {
+    		 return this.sanitizer.bypassSecurityTrustResourceUrl(dir.iconURL);
+    	}
+    	return "img/dir.png";
+    }
+    unusedVar() {
+    	this.isAudio = "";
+    	this.isVideo = "";
     }
 
     browseParent() {
