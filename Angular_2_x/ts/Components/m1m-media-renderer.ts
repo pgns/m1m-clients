@@ -57,6 +57,7 @@ export class M1mMediaRenderer implements OnInit {
     volume      : number    = 0;
     timeoutVol  : number;
     playState   : PLAY_STATE= PLAY_STATE.STOP;
+    saveVolume  : number    = 0;
     // tapped      = false;
     constructor(private cs: CommService) {
         // ...
@@ -115,9 +116,32 @@ export class M1mMediaRenderer implements OnInit {
         this.timeoutVol = window.setTimeout ( () => this.cs.setVolume(this.nf.id, volume)
                                             , 50 );
     }
-	isVolumeDown() 	: boolean {return this.volume <= 50 && this.volume != 0;}
-	isVolumeUp() 	: boolean {return this.volume > 50 }
-	isMute()		: boolean {return this.volume == 0;}
+    startMute(){
+        this.saveVolume = this.volume; 
+        clearTimeout(this.timeoutVol);
+        this.timeoutVol = window.setTimeout ( () => this.cs.setVolume(this.nf.id, 0), 50 );
+    }
+    stopMute(){
+        clearTimeout(this.timeoutVol);
+        this.timeoutVol = window.setTimeout ( () => this.cs.setVolume(this.nf.id, this.saveVolume), 50 );
+    }
+    isMusic() : boolean {
+        //console.log(this.currentMedia);
+        return this.currentMedia.classe == "object.item.audioItem.musicTrack";
+    }
+    isVideo()   : boolean {
+        //console.log(this.currentMedia.classe);
+        return this.currentMedia.classe == "object.item.videoItem.movie";
+    }
+	isVolumeDown() 	: boolean {
+        return this.volume <= 50 && this.volume != 0;
+    }
+	isVolumeUp() 	: boolean {
+        return this.volume > 50 
+    }
+	isMute()		: boolean {
+        return this.volume == 0;
+    }
     isPlaying() : boolean {return this.playState === PLAY_STATE.PLAY ;}
     isPaused () : boolean {return this.playState === PLAY_STATE.PAUSE;}
     isStopped() : boolean {return this.playState === PLAY_STATE.STOP ;}
@@ -142,5 +166,27 @@ export class M1mMediaRenderer implements OnInit {
                 // Subscribe to media server
             });
         });
+    }
+    isTitle()       : boolean{
+        return this.currentMedia.title != "";
+    }
+    isImg()         : boolean{
+        return this.currentMedia.albumarturi != "";
+    }
+    isDuration()    : boolean{
+        return this.currentMedia.duration != "";
+    }
+    isDescription() : boolean{
+        return this.currentMedia.longdescription != "";
+    } 
+    isActor()       : boolean{
+        return this.currentMedia.actors != "";
+    } 
+    getDuration() : string {
+        if (this.currentMedia.duration.slice(0,1) !== "0" ) {
+            return this.currentMedia.duration.slice(0,7);
+        } else {
+            return this.currentMedia.duration.slice(2,7);
+        }
     }
 }

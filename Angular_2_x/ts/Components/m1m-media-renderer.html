@@ -1,3 +1,12 @@
+
+<!-- Explication des attributs de la balise section :
+– alx-drag-css = "dropCandidate" : si un media est "dragged" la classe CSS du renderer est dropCandidate
+– alx-drag-over-css = "canDrop" : si le media dragé est au niveau du renderer la classe CSS canDrop s'applique
+– (swipeleft)="Log('swipeleft')" : le sipe est détectable et peut déclencher une fonction
+– (press)="Log('press')" : idem pour le press
+– [class.playing]="isPlaying()" : la classe CSS .playing s'active si un media est lu
+– #rootSection : équivalent à id="rootSection" mais à n'utiliser qu'avec un appel de classe Javascript (cf. plus bas)
+-->
 <section alx-dropzone
          [alx-accept-function]  = "isMedia"
          (alx-ondrop)           = "loadMedia($event)"
@@ -8,21 +17,31 @@
          [class.playing]="isPlaying()"
          #rootSection
 >
-
 <div class="columns">
-  <div class="column is-offset-one-quarter is-half">
+  <div class="column is-2">
+  <!-- marge de deux-->
+  </div>
+  <div class="column is-5">
     <div class="card is-fullwidth">
       <header class="card-header">
+      <div *ngIf="currentMedia">
         <p class="card-header-title">
-          Component
+          {{currentMedia.title}}
         </p>
-        <a class="card-header-icon">
-          <i class="fa fa-angle-down"></i>
-        </a>
+      </div>
       </header>
       <div class="card-content">
-        <div class="content">
-			<img src="{{nf.iconURL}}">
+        <div *ngIf="!currentMedia" class="content">
+          <!-- Si aucun Media -->
+            <img src="{{nf.iconURL}}">
+        </div>
+        <div *ngIf="currentMedia" class="content">
+          <!-- si c'est une musique -->
+            <img *ngIf="isMusic()" src="{{currentMedia.albumarturi}}">
+          <!-- si c'est une video -->
+          <video *ngIf="isVideo()" width="320" height="240" poster="{{currentMedia.albumarturi}}" controls>
+              <source src="{{currentMedia.ressource}}" type="video/mp4">
+          </video> 
         </div>
       </div>
       <footer class="card-footer">
@@ -42,11 +61,54 @@
           </paper-slider>
         </div>
         <div classs="card-footer-item">
-          <a class="button is-info" *ngIf="isMute()" (click)="stopSound()"><i class="fa fa-volume-off" aria-hidden="true"></i></a>
-          <a class="button is-info" *ngIf="isVolumeDown()"  (click)="stopSound()"><i class="fa fa-volume-down"></i></a>
-          <a class="button is-info" *ngIf="isVolumeUp()"    (click)="stopSound()"><i class="fa fa-volume-up"></i></a>
+          <a class="button is-info" *ngIf="isMute()" (click)="stopMute()"><i class="fa fa-volume-off" aria-hidden="true"></i></a>
+          <a class="button is-info" *ngIf="isVolumeDown()"  (click)="startMute()"><i class="fa fa-volume-down"></i></a>
+          <a class="button is-info" *ngIf="isVolumeUp()"    (click)="startMute()"><i class="fa fa-volume-up"></i></a>
         </div>
       </footer>
+    </div>
+  </div>
+  <div class="column is-1"></div>
+  <div *ngIf="currentMedia" class="column is-3">
+    <div class="card is-fullwidth">
+      <header class="card-header">
+        <p class="card-header-title">Affiche</p>
+          <a class="card-header-icon">
+          <i class="fa fa-angle-down"></i>
+        </a>
+      </header>
+      <div *ngIf="isImg()" class="card-content">
+        <img src="{{currentMedia.albumarturi}}">
+      </div>
+      <header class="card-header">
+        <p class="card-header-title">Information</p>
+        <a class="card-header-icon">
+          <i class="fa fa-angle-down"></i>
+        </a>
+      </header>
+      <div class="card-content">
+        <div *ngIf="isTitle()">
+          Titre : {{currentMedia.title}}
+        </div>
+        <div *ngIf="isDuration()">
+          Durée : {{getDuration()}}
+        </div>
+        <div *ngIf="isDescription()">
+          Description : <p>{{currentMedia.longdescription}}</p>
+        </div>
+      </div>
+      <header class="card-header">
+        <p class="card-header-title">Acteur</p>
+          <a class="card-header-icon">
+          <i class="fa fa-angle-down"></i>
+        </a>
+      </header>
+      <div *ngIf="isActor()" class="card-content">
+        Acteurs : 
+        <ul>
+          <li *ngFor="let actor of currentMedia.actors">{{actor}}</li>
+        </ul>
+      </div>
     </div>
   </div>
 </div>
@@ -101,10 +163,9 @@
 
     <!-- Cette section comporte des infos complémentaires sur le media en cours de lecture. Il affiche la durée du média, l'image si elle est dispo, et le json complet des métadonnées du media -->
     <section *ngIf="currentMedia">
-        Duration: {{currentMedia.duration}}<br />
-        <img src="{{ currentMedia.icon }}" style="max-width:100px" /><br/>
+        <!--Duration: {{currentMedia.duration}}<br />-->
+        <!--<img src="{{ currentMedia.icon }}" style="max-width:100px" /><br/>-->
         currentMedia object:<br />
         <code>{{currentMedia | json}}</code>
     </section>
-
-</section>
+  </section>
