@@ -1,10 +1,47 @@
+
+<section class="hero is-info">
+	<div class="hero-body">
+		<div class="container">
+			<p class="title">
+				Serveurs
+			</p>
+		</div>
+	</div>
+</section><!-- ici est chargé le template m1m-media-browser.html -->
+<m1m-media-browser [devices]="mediaServers">
+	
+</m1m-media-browser>
+
+
+
+<hr />
+<section class="hero is-info">
+	<div class="hero-body">
+		<div class="container">
+			<p class="title">
+				Support Media
+			</p>
+		</div>
+	</div>
+</section>
+<!-- <h2>Media Renderers</h2> -->
+<!--selected: {{getCurrentMediaRendererName()}}-->
+<m1m-media-renderer *ngFor="let renderer of mediaRenderers"
+					[nf]="renderer"
+					(tap)="selectMediaRenderer(renderer)"
+					[class.selected] = "currentRenderer === renderer"
+					>
+	<!-- ici est chargé le template m1m-mdia-renderer.html autant de fois qu'il y a de renderers (boucle *ngfor) -->
+</m1m-media-renderer>
+
+<!--
 <paper-toolbar>
     <span class="title">Serveur liste</span>
+    <paper-icon-button icon="add">+</paper-icon-button>
 </paper-toolbar>
 <m1m-media-browser [devices]="mediaServers">
     <!-- ici est chargé le template m1m-media-browser.html -->
-</m1m-media-browser>
-
+<!--</m1m-media-browser>
 
 
 <hr />
@@ -13,14 +50,14 @@
 </paper-toolbar>
 
 <!-- <h2>Media Renderers</h2> -->
-selected: {{getCurrentMediaRendererName()}}
-<m1m-media-renderer *ngFor="let renderer of mediaRenderers"
+
+<!--<m1m-media-renderer *ngFor="let renderer of mediaRenderers"
                     [nf]="renderer"
                     (tap)="selectMediaRenderer(renderer)"
                     [class.selected] = "currentRenderer === renderer"
                     >
     <!-- ici est chargé le template m1m-mdia-renderer.html autant de fois qu'il y a de renderers (boucle *ngfor) -->
-</m1m-media-renderer>
+<!--</m1m-media-renderer>
 
 
 

@@ -42,7 +42,8 @@ enum PLAY_STATE {PLAY, PAUSE, STOP}
 @Component({
     selector		: "m1m-media-renderer",
     templateUrl		: "ts/Components/m1m-media-renderer.html",
-    styleUrls       : [ "ts/Components/m1m-media-renderer.css" ]
+    styleUrls       : [ "ts/Components/m1m-media-renderer.css",
+                        "css/bulma.css" ]
 })
 export class M1mMediaRenderer implements OnInit {
     @Input() nf	: MediaRenderer;
@@ -114,6 +115,9 @@ export class M1mMediaRenderer implements OnInit {
         this.timeoutVol = window.setTimeout ( () => this.cs.setVolume(this.nf.id, volume)
                                             , 50 );
     }
+	isVolumeDown() 	: boolean {return this.volume <= 50 && this.volume != 0;}
+	isVolumeUp() 	: boolean {return this.volume > 50 }
+	isMute()		: boolean {return this.volume == 0;}
     isPlaying() : boolean {return this.playState === PLAY_STATE.PLAY ;}
     isPaused () : boolean {return this.playState === PLAY_STATE.PAUSE;}
     isStopped() : boolean {return this.playState === PLAY_STATE.STOP ;}

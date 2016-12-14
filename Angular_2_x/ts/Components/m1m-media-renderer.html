@@ -8,6 +8,51 @@
          [class.playing]="isPlaying()"
          #rootSection
 >
+
+<div class="columns">
+  <div class="column is-offset-one-quarter is-half">
+    <div class="card is-fullwidth">
+      <header class="card-header">
+        <p class="card-header-title">
+          Component
+        </p>
+        <a class="card-header-icon">
+          <i class="fa fa-angle-down"></i>
+        </a>
+      </header>
+      <div class="card-content">
+        <div class="content">
+			<img src="{{nf.iconURL}}">
+        </div>
+      </div>
+      <footer class="card-footer">
+        <div classs="card-footer-item"><a *ngIf="!isPlaying()" class="button is-info" (click)="play ();"><i class="fa fa-play"></i></a></div>
+        <div classs="card-footer-item"><a *ngIf="isPlaying()" class="button is-info" style="background-color: #7a7a7a;"><i class="fa fa-play"></i></a></div>
+        <div classs="card-footer-item"><a *ngIf="isPlaying()" class="button is-info" (click)="pause()"><i class="fa fa-pause"></i></a></div>
+        <div classs="card-footer-item"><a *ngIf="!isPlaying()" class="button is-info" style="background-color: #7a7a7a;"><i class="fa fa-pause"></i></a></div>
+        <div classs="card-footer-item"><a *ngIf="!isStopped()" class="button is-info" (click)="stop ()"><i class="fa fa-stop"></i></a></div> 
+        <div classs="card-footer-item"><a *ngIf="isStopped()" class="button is-info" style="background-color: #7a7a7a;"><i class="fa fa-stop"></i></a></div> 
+        <div classs="card-footer-item">
+         <paper-slider
+            min   = "0"
+            max   = "100"
+            [ngModel]       = "volume"
+            (ngModelChange) = "setVolume($event)"
+          >
+          </paper-slider>
+        </div>
+        <div classs="card-footer-item">
+          <a class="button is-info" *ngIf="isMute()" (click)="stopSound()"><i class="fa fa-volume-off" aria-hidden="true"></i></a>
+          <a class="button is-info" *ngIf="isVolumeDown()"  (click)="stopSound()"><i class="fa fa-volume-down"></i></a>
+          <a class="button is-info" *ngIf="isVolumeUp()"    (click)="stopSound()"><i class="fa fa-volume-up"></i></a>
+        </div>
+      </footer>
+    </div>
+  </div>
+</div>
+
+
+
 <!-- Explication des attributs de la balise section :
 – alx-drag-css = "dropCandidate" : si un media est "dragged" la classe CSS du renderer est dropCandidate
 – alx-drag-over-css = "canDrop" : si le media dragé est au niveau du renderer la classe CSS canDrop s'applique
@@ -18,7 +63,7 @@
 -->
 
 <!-- nf est l'objet media lu par le renderer. pour connaître les informations accessibles, regardez le json tracé dans le renderer -->
-<p>• {{nf.name}}</p>
+<!---<p>• {{nf.name}}</p>
     <paper-card heading="Card Title">
         <div class="card-content">Some content</div>
         <div class="card-actions">
