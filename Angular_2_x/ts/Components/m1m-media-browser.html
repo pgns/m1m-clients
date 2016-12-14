@@ -18,14 +18,10 @@
           </span>
           <span>{{getCurrentParentName()}}</span>
         </a>
-       <!-- <span class="up" [class.active]="breadcrumb.length>0" (click)="browseParent()">
-            <!--UP
-            <iron-icon icon="icons:reply"></iron-icon>
-        </span>-->
         <h1 class="title titre" *ngIf="ms && ms">{{getCurrentItemName()}}</h1>
         <h1 class="title titre margin-top-20" *ngIf="!ms">Serveurs</h1>
     </header>
-    <section #rootSection style="position: relative;">
+    <section #rootSection style="position: relative; width : 100%; max-height : 400px; overflow : auto;">
         <section #dataSection class="original">
             <section *ngIf="!ms" class="flex-media-broser">
                 <div *ngFor="let server of devices" (click)="browseMediaServer(server)" class="data-directories">
@@ -47,28 +43,6 @@
                             <p class="title is-5 centrer">{{dir.name}}</p>
                         </div>        
                 </div> 
-                <!-- Si il y a des médias l'application affiche ce tableau 
-                <table cellpadding="0" cellspacing="0" width="100%" class="medias">
-                    <tr style="cursor:move" *ngFor="let media of data.medias" [alx-draggable]="media">
-                        <td class="media-title">
-                       
-                            {{ media.title }} — {{ media.creator }} 
-                        </td>
-                        <td class="media-duration">
-                            {{media.duration}}
-                        </td>
-                    </tr>
-                </table> 
-
-                <div *ngFor="let media of data.medias" [alx-draggable]="media" class="data-directories">
-                    <figure class="image is-128x128">
-                          <img src="http://www.icone-png.com/png/54/54131.png" alt="">
-                        </figure>
-                        <div class="titre-directories">
-                            <p class="title is-5 centrer">{{media.title}} —  {{ getMediaDuration(media) }} </p>
-                        </div>        
-
-                </div> -->
                 <div *ngFor="let media2 of data.medias" [alx-draggable]="media2">
                     <div class="browser-media-music" *ngIf="media2.classe.indexOf( isAudio ) > -1">
                         <figure class="image is-64x64">
@@ -162,48 +136,7 @@
                             </div>  
                         </div> 
                     </div>
-
-
-
                 </div>               
-                <!--
-                <div *ngFor="let media2 of data.medias" [alx-draggable]="media2" class="browser-media">
-                <div class="box">
-                  <article class="media">
-                    <div class="media-left">
-                      <figure class="image is-64x64">
-                        <img src="{{getMediaImage(media2)}}" alt="Image">
-                      </figure>
-                    </div>
-                    <div class="media-content">
-                      <div class="content">
-                        <p>
-
-
-                            <span *ngIf="media2.title.length > 36" class="defileParent"> <strong>
-                            <span class="defile" 
-                              > 
-                            {{media2.title}}
-                            </span> </strong>
-                            </span> 
-                            <span *ngIf="media2.title.length <= 36"> <strong>
-                           
-                            {{media2.title}}
-                            </strong>
-                            </span> 
-
-                            {{ media2.creator }}
-                          <br/>  
-                            <small>{{ getMediaDuration(media2) }}</small>
-                        </p>
-                      </div>
-                    </div>
-                  </article>
-                </div> 
-
-                </div> -->
-
-
             </section>
         </section>
     </section>

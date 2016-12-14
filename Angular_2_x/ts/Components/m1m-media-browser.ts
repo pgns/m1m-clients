@@ -34,9 +34,6 @@ export class M1mMediaBrowser {
             this.data = null;
         }
     }
-    mediaConsole() {
-        console.log(this.data);
-    }
     gettext() : string {
     	return "data-text = \"aaaa\"";
     }
