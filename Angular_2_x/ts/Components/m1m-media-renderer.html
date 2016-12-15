@@ -29,6 +29,11 @@
           {{currentMedia.title}}
         </p>
       </div>
+		<div *ngIf="!currentMedia">
+        <p class="card-header-title">
+          {{nf.name}}
+        </p>
+      </div>
       </header>
       <div class="card-content">
         <div *ngIf="!currentMedia" class="content">
@@ -71,8 +76,10 @@
   <div class="column is-1"></div>
   <div *ngIf="currentMedia" class="column is-3">
     <div class="card is-fullwidth">
-      <header class="card-header">
-        <p class="card-header-title">Affiche</p>
+		<!-- Si il y a une image -->
+      <header *ngIf="isImg()" class="card-header">
+        <p *ngIf="isMusic()" class="card-header-title">{{currentMedia.creator}}</p>
+		<p *ngIf="isVideo()" class="card-header-title">Affiche</p>
           <a class="card-header-icon">
           <i class="fa fa-angle-down"></i>
         </a>
@@ -80,8 +87,9 @@
       <div *ngIf="isImg()" class="card-content">
         <img src="{{currentMedia.albumarturi}}">
       </div>
+	  <!-- affichage des informations -->
       <header class="card-header">
-        <p class="card-header-title">Information</p>
+        <p class="card-header-title">Informations</p>
         <a class="card-header-icon">
           <i class="fa fa-angle-down"></i>
         </a>
@@ -93,11 +101,17 @@
         <div *ngIf="isDuration()">
           Durée : {{getDuration()}}
         </div>
+		<div *ngIf="isDate()">
+          Date de sortie : {{currentMedia.date}}
+        </div>
+		<div *ngIf="isGenres()">
+          Genre : {{currentMedia.genres}}
+        </div>
         <div *ngIf="isDescription()">
           Description : <p>{{currentMedia.longdescription}}</p>
         </div>
       </div>
-      <header class="card-header">
+      <header *ngIf="isActor()" class="card-header">
         <p class="card-header-title">Acteur</p>
           <a class="card-header-icon">
           <i class="fa fa-angle-down"></i>
