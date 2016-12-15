@@ -117,7 +117,7 @@ export class M1mMediaRenderer implements OnInit {
                                             , 50 );
     }
     startMute() {
-        this.saveVolume = this.volume; 
+        this.saveVolume = this.volume;
         clearTimeout(this.timeoutVol);
         this.timeoutVol = window.setTimeout ( () => this.cs.setVolume(this.nf.id, 0), 50 );
     }
@@ -127,7 +127,7 @@ export class M1mMediaRenderer implements OnInit {
     }
     isMusic() : boolean {
         //console.log(this.currentMedia);
-        return this.currentMedia.classe === 'object.item.audioItem.musicTrack';
+        return this.currentMedia.classe === "object.item.audioItem.musicTrack";
     }
     isVideo()   : boolean {
         //console.log(this.currentMedia.classe);
@@ -180,13 +180,14 @@ export class M1mMediaRenderer implements OnInit {
         return this.currentMedia.longdescription !== "";
     }
     isActor()       : boolean {
-        return this.currentMedia.actors.length === 0;
+		console.log("actors", this.currentMedia.actors.length);
+        return this.currentMedia.actors.length !== 0;
     }
 	isDate()       : boolean {
         return this.currentMedia.date !== "inconnue";
     }
 	isGenres()       : boolean {
-        return this.currentMedia.genres.length === 0;
+        return this.currentMedia.genres.length !== 0;
     }
     getDuration() : string {
         if (this.currentMedia.duration.slice(0,1) !== "0" ) {
