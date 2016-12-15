@@ -208,3 +208,10 @@ section.original tr:active td {
    line-height: 1.2;        /* fallback */
    max-height: 2.4;       /* fallback */
 }
+
+@media screen and (max-width: 350px) {
+  .titre {
+  	margin-top: 30px;
+  }
+}
+
