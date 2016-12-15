@@ -102,7 +102,7 @@
           Durée : {{getDuration()}}
         </div>
 		<div *ngIf="isDate()">
-          Date de sortie : {{currentMedia.date}}
+          Date de sortie : {{getDateLocal(currentMedia.date)}}
         </div>
 		<div *ngIf="isGenres()">
           Genre : {{currentMedia.genres}}
@@ -117,8 +117,7 @@
           <i class="fa fa-angle-down"></i>
         </a>
       </header>
-      <div *ngIf="isActor()" class="card-content">
-        Acteurs : 
+      <div *ngIf="isActor()" class="card-content"> 
         <ul>
           <li *ngFor="let actor of currentMedia.actors">{{actor}}</li>
         </ul>

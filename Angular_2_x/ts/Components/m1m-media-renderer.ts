@@ -196,4 +196,13 @@ export class M1mMediaRenderer implements OnInit {
             return this.currentMedia.duration.slice(2,7);
         }
     }
+	//retourne la date format fr - 
+	// si possède ddes '-', on considère que la date est pas dans le bons format
+	getDateLocal( date: String )	: String {
+		if( date.indexOf("-") !== 0){
+			let maDate = date.split("-");
+			date =  maDate[2]+"/"+maDate[1]+"/"+maDate[0];
+		}
+		return date;
+	}
 }
